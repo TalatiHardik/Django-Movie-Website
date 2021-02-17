@@ -31,6 +31,21 @@ class Movie(models.Model):
     status = models.CharField(choices=STATUS_CHOICES , max_length=2)
     year_of_production = models.DateField()
     views_count = models.IntegerField(default=0)
+    cast = models.CharField(max_length=100)
 
     def __str__(self):
         return self.title
+LINK_CHOICES = (
+    ('D','DOWNLOAD LINK'),
+    ('W','WATCH LINK'),
+
+)
+
+class MovieLinks(models.Model):
+    movie = models.ForeignKey(Movie, related_name='movie_watch_link' ,on_delete=models.CASCADE)
+    type = models.CharField(choices=LINK_CHOICES , max_length = 1)
+    link = models.URLField()
+
+    def __str__(self):
+        return str(self.movie)+" "+str(self.type)
+    
