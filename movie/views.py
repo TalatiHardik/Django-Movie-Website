@@ -6,6 +6,6 @@ from .models import Movie
 
 class MovieList(ListView):
     model = Movie
-        
+    paginate_by = 1
 class MovieDetail(DetailView):
     model = Movie
