@@ -71,36 +71,24 @@
 			<div class="swiper-container">
 
 				<div class="swiper-wrapper">
-					<div class="swiper-slide">
-						<img src="images/slider/poster2.jpg">
-						<div class="caption">
-							<div class="captioninside">
-								<h3>Movie Title</h3>
-								<p>Lorem ipsum dolor siamet</p>
-								<a href="single.html" class="playbutton">Play</a>
+					
+					{% for movie in slider_movies %}
+						<div class="swiper-slide">
+							
+							{% if movie.banner %}
+								<img src="{{movie.banner.url}}">	
+							{% endif %}
+							
+							<div class="caption">
+								<div class="captioninside">
+									<h3>{{movie.title}}</h3>
+									<p>{{movie.description}}</p>
+									<a href="{%url 'movies:movie_detail' movie.slug%}" class="playbutton">Play</a>
+								</div>
 							</div>
-						</div>
-					</div>
-					<div class="swiper-slide">
-						<img src="images/slider/poster1.jpg">
-						<div class="caption">
-							<div class="captioninside">
-								<h3>Movie Title 2</h3>
-								<p>Lorem ipsum dolor siamet</p>
-								<a href="single.html" class="playbutton">Play</a>
-							</div>
-						</div>
-					</div>
-					<div class="swiper-slide">
-						<img src="images/slider/poster2.jpg">
-						<div class="caption">
-							<div class="captioninside">
-								<h3>Movie Title 3</h3>
-								<p>Lorem ipsum dolor siamet</p>
-								<a href="single.html" class="playbutton">Play</a>
-							</div>
-						</div>
-					</div>
+						</div>						
+					{% endfor %}
+
 				</div>
 				<!-- Add Pagination -->
 				<div class="swiper-pagination"></div>
